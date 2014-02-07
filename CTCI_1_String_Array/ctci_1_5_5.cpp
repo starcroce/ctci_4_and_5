@@ -8,10 +8,12 @@ string compressed(string s) {
     char last = s.at(0);
     int count = 1;
     for (int i = 1; i < s.length(); i++) {
+        // if s[i] is duplicate char
         if (s.at(i) == last) {
             count++;
         }
         else {
+            // update ans string, last char and count
             ans += last + to_string(count);
             last = s.at(i);
             count = 1;

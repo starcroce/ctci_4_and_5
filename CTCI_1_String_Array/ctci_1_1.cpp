@@ -10,6 +10,7 @@ bool isUnique(string s){
 	int len = s.length();
 	for(int i=0; i<len; i++){
 		int n = (int)s[i];
+		// if a[n] == true, it means that this char has been appeared
 		if(a[n])
 			return false;
 		a[n] = true;

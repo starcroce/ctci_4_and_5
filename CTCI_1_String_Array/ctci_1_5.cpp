@@ -11,10 +11,12 @@ void replace(char *s){
 		if(s[i] == ' ')
 			spaceCount++;
 	}
+	// convert ' ' to "%20", add 2 char every time
 	int newlen = len+spaceCount*2;
 	s[newlen] = '\0';
-	int k = newlen;
-	k--;
+	// k is the last index of the result
+	int k = newlen - 1;
+	// k--;
 	for(int i=len-1; i>=0; i--){
 		if(s[i] == ' '){
 			s[k] = '0';

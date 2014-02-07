@@ -21,6 +21,7 @@ void setZero(int a[][3], int m, int n){
 	}
 	for(int i=0; i<m; i++){
 		for(int j=0; j<n; j++){
+			// it means this row or col has 0
 			if(row[i] || colum[j])
 				a[i][j] = 0;
 		}

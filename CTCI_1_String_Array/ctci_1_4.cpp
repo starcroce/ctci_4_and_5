@@ -3,13 +3,16 @@
 #include <algorithm>
 using namespace std;
 
+// also the 1_3 of version 5
 bool isAnagram(string s1, string s2){
 	int len1 = s1.length();
 	int len2 = s2.length();
 	if(len1 != len2)
 		return false;
-	sort(&s1[0], &s1[0]+len1);
-	sort(&s2[0], &s2[0]+len2);
+	// sort(&s1[0], &s1[0]+len1);
+	// sort(&s2[0], &s2[0]+len2);
+	sort(s1.begin(), s1.end());
+	sort(s2.begin(), s2.end());
 	return (s1 == s2);
 }
 
