@@ -31,6 +31,7 @@ void printList(node *head){
 	cout<<endl;
 }
 
+// this solution will change the original order
 node *partition(node *head, int x){
 	node *before = NULL;
 	node *after = NULL;

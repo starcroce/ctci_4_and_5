@@ -30,12 +30,14 @@ node *loopStart(node *head){
 		return NULL;
 	node *fast = head;
 	node *slow = head;
+	// the condition is fast->next != NULL
 	while(fast->next != NULL){
 		fast = fast->next->next;
 		slow = slow->next;
 		if(fast == slow)
 			break;
 	}
+	// if no loop
 	if(fast->next == NULL)
 		return NULL;
 	slow = head;

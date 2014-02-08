@@ -34,6 +34,8 @@ bool remove(node *n){
 	if(n==NULL || n->next==NULL)
 		return false;
 	node *t = n->next;
+	// assign the data and next pointer to the current node
+	// so the current node is kind of missing
 	n->data = t->data;
 	n->next = t->next;
 	return true;

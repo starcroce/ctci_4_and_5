@@ -34,14 +34,17 @@ bool isPalindrome(node *head){
 	node *fast = head;
 	node *slow = head;
 	stack<int> s;
+	// push the first half into stack
 	while(fast != NULL && fast->next != NULL){
 		s.push(slow->data);
 		fast = fast->next->next;
 		slow = slow->next;
 	}
+	// move to the next half
 	if(fast != NULL){
 		slow = slow->next;
 	}
+	// pop the stack and compare it with next half of the list
 	while(slow != NULL){
 		int val = s.top();
 		if(val != slow->data){

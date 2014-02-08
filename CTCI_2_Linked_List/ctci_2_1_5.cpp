@@ -56,6 +56,8 @@ void removeDuplicate2(node *head){
 	node *p, *c = head;
 	while(c){
 		p = c;
+		// another method is to use if-continue
+		// like leetcode remove duplicate element from sorted list
 		while(p->next){
 			if(p->next->data == c->data){
 				p->next = p->next->next;
