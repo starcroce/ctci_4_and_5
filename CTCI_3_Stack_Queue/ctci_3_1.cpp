@@ -5,6 +5,7 @@ class stack3{
 public:
 	stack3(int size = 300){
 		buff = new int[size*3];
+		// stackTop[] is the offset of the index from size * stackNum
 		stackTop[0] = stackTop[1] = stackTop[2] = -1;
 		this->size = size;
 	}
@@ -12,6 +13,7 @@ public:
 		delete[] buff;
 	}
 	void push(int stackNum, int data){
+		// update the new index
 		int index = stackNum*size+stackTop[stackNum]+1;
 		buff[index] = data;
 		stackTop[stackNum]++;

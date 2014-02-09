@@ -30,6 +30,8 @@ public:
 		return sIn.top();
 	}
 private:
+	// sOut is for pop and front
+	// sIn is for push and rear
 	stack<T> sIn, sOut;
 };
 

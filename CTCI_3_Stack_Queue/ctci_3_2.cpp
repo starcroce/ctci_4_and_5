@@ -3,6 +3,8 @@ using namespace std;
 
 const int INIT = ~(1<<31);
 
+// use a struct to store the min value
+// can easily add max value
 typedef struct node{
 	int data, min;
 }node;
@@ -20,6 +22,7 @@ public:
 	void push(int data){
 		index++;
 		buff[index].data = data;
+		// update the min value when push
 		if(data < buff[index-1].min)
 			buff[index].min = data;
 		else

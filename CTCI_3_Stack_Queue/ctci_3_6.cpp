@@ -18,15 +18,18 @@ void qSort(stack<int> &s){
 }
 
 // O(n^2) time and O(n) space
+// kind of like insertion sort
 stack<int> sSort(stack<int> s){
 	stack<int> t;
 	while(!s.empty()){
 		int data = s.top();
 		s.pop();
+		// remove all elements in t that larger than s.top()
 		while(!t.empty() && t.top()>data){
 			s.push(t.top());
 			t.pop();
 		}
+		// push it into the right pos in t
 		t.push(data);
 	}
 	return t;
