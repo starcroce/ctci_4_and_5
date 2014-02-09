@@ -1,3 +1,4 @@
+// same as leetcode
 bool isValidBST(treeNode *root){
 	return isValidBST(root, INT_MIN, INT_MAX);
 }

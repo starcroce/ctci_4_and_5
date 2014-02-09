@@ -3,6 +3,8 @@ struct treeNode{
 	treeNode *left, *right;
 };
 
+// similar to leetcode binary tree level order traversal I, but that is vector
+// can use a queue to store the level node, and push NULL when one level is finished
 vector<list<treeNode*>> findLevelLinkedLists(treeNode *root){
 	vector<list<treeNode*>> allLinkedLists;
 	int level = 0;

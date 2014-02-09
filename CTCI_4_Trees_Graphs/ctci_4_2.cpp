@@ -13,10 +13,12 @@ bool isRoute(int src, int dst){
 	while(!q.isEmpty()){
 		int tmp = q.front();
 		q.pop();
+		// after pop from queue, the visiting is finished
 		if(tmp == dst)
 			return true;
 		for(int i=0; i<n; i++){
-			if(visited[i]){
+			// visit neighbors with false visited state
+			if(visited[i] == false){
 				q.push(i);
 				visited[i] = true
 			}

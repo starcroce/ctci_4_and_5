@@ -28,6 +28,7 @@ treeNode* inOrderSuccessor(treeNode *node){
 		return findMinimalNode(node->right);
 	}
 	treeNode *pn = node->parent;
+	// till the parent is the left child of the parent's parent
 	while(pn && pn->right == node){
 		node = pn;
 		pn = pn->parent;
