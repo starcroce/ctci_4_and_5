@@ -38,3 +38,25 @@ int main(){
 	printSubsets(sub);
 	return 0;
 }
+
+// more elegane DFS solution
+// same as leetcode subsets
+vector<vector<int> > subsets(vector<int> &S) {
+    vector<vector<int> > res;
+    if(S.size() == 0) {
+        return res;
+    }
+    vector<int> sol;
+    sort(S.begin(), S.end());
+    subsets(S, 0, sol, res);
+    return res;
+}
+
+void subsets(vector<int> &S, int num, vector<int> &sol, vector<vector<int> > &res) {
+    res.push_back(sol);
+    for(int i = num; i < S.size(); i++) {
+        sol.push_back(S[i]);
+        subsets(S, i+1, sol, res);
+        sol.pop_back();
+    }
+}

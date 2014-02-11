@@ -6,6 +6,8 @@ enum color{
 	red, yellow, blue, green
 };
 
+// this function is to paint the original pixel with input color
+// regardless of original color, only run into the same color or edge, it will return false
 bool paintFill(color **screen, int m, int n, int x, int y, color c){
 	if(x < 0 || x >= m || y < 0 || y >= n)
 		return false;

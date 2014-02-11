@@ -31,3 +31,28 @@ int main(){
 	printPair(count, count, str, 0);
 	return 0;
 }
+
+// same as leetcode generate parentheses
+vector<string> generateParenthesis(int n) {
+    vector<string> res;
+    if(n == 0) {
+        return res;
+    }
+    string pair;
+    generateParenthesis(n, n, pair, res);
+    return res;
+}
+
+void generateParenthesis(int left, int right, string pair, vector<string> &res) {
+    if(left == 0 && right == 0) {
+        res.push_back(pair);
+    }
+    // more '('
+    if(left > 0) {
+        generateParenthesis(left - 1, right, pair + '(', res);
+    }
+    // more ')'
+    if(right > left) {
+        generateParenthesis(left, right - 1, pair + ')', res);
+    }
+}
