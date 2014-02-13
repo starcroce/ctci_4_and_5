@@ -1,3 +1,5 @@
+// same as leetcode n-queens
+// for each row, check the col and diagonal, then recursively process the next row
 #include <iostream>
 using namespace std;
 
