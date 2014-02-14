@@ -50,6 +50,10 @@ int checkDiagonal(int board[], int n, Check check){
 	return 0;
 }
 
+// board[i][0] != empty && board[i][0] == board[i][1] == board[i][2]
+// board[0][i] != empty && board[0][i] == board[1][i] == board[2][i]
+// board[0][0] != empty && board[0][0] == board[1][1] == board[2][2]
+// board[0][2] != empty && board[0][2] == board[1][1] == board[2][0]
 int hasWon(int board[], int n){
 	int type = 0;
 	type = checkRowColumn(board, n, ROW);

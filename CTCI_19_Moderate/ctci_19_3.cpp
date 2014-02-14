@@ -6,6 +6,7 @@ int numZeros(int n){
 	int count = 0;
 	if(n < 0)
 		return -1;
+	// count the number of n/5, then n/25, then n/125...
 	for(int i=5; n/i>0; i*=5){
 		count += n/i;
 	}

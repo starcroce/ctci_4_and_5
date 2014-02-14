@@ -2,6 +2,7 @@
 #include <algorithm>
 using namespace std;
 
+// leetcode two sum, sort is O(nlogn), use hash table can get O(n)
 void printPairSums(int array[], int sum, int length){
 	sort(array, array+length);
 	int first = 0, last = length-1;

@@ -16,12 +16,20 @@ result estimate(string guess, string solution){
 	for(int i=0; i<4; i++){
 		solutionMask |= 1<<(solution.at(i)-'A');
 	}
+	cout<<solutionMask<<endl;
 	for(int i=0; i<4; i++){
 		if(guess.at(i) == solution.at(i))
 			res.hits++;
 		// if there were no same color, it would be 0
-		else if(solutionMask & (1<<(guess.at(i)-'A')))
+		// if there is a pseduo hit, the same pos will be 1
+		else if(solutionMask & (1<<(guess.at(i)-'A'))){
+			int tmp = 1<<(guess.at(i)-'A');
+			// 131138, 131072
+			// 100000000001000010
+			// 100000000000000000
+			cout<<tmp<<endl;
 			res.pseudoHits++;
+		}
 	}
 	return res;
 }
