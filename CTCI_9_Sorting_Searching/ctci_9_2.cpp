@@ -7,6 +7,7 @@ using namespace std;
 bool stringCompare(string s1, string s2){
 	sort(&s1[0], &s1[0]+s1.length());
 	sort(&s2[0], &s2[0]+s2.length());
+	// str1 < str2 only compare the char, it doesn't care about the length
 	return s1 < s2;
 }
 

@@ -2,6 +2,8 @@
 using namespace std;
 
 // find x in which part of the array and do binary search
+// same as leetcode search in rotated sorted array
+// if a[low] <= a[mid], the left is sorted, else the right is sorted
 int search(int a[], int low, int high, int x){
 	while(low <= high){
 		int mid = (low+high)/2;

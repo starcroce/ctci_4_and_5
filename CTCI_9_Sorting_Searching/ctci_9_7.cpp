@@ -9,6 +9,7 @@ struct person{
 person p[6];
 int d[6];
 
+// fist ensure height, then ensure weight
 bool personComp(person p1, person p2){
 	if(p1.height == p2.height)
 		return p1.weight < p2.weight;
@@ -17,14 +18,18 @@ bool personComp(person p1, person p2){
 }
 
 // find the longest sequence contains increasing heights and weights
+// the original is sort by height, find the longest seq with increasing weights
 int listPerson(person p[], int n){
 	int k = 1;
 	d[0] = p[0].weight;
 	for(int i=1; i<n; i++){
-		// get the num of increasing weight?
+		// if the next person is weighter than the prev one
 		if(p[i].weight >= d[k-1])
 			d[k++] = p[i].weight;
+		// if the next person is lighter than the prev one
 		else{
+			cout<<i<<" "<<k<<endl;
+			// update index of d to let p[i].weight can be inserted
 			for(int j=k-1; j>=0 && d[j]>p[i].weight; j--){
 				d[j+1] = p[i].weight;
 			}

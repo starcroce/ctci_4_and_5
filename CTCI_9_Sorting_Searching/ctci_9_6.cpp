@@ -10,6 +10,7 @@ int matrix[5][5] = {
 };
 
 int findElem(int m, int n, int x){
+	// should start from top right, then move left is decreasing, move down is increasing
 	int row = 0, col = n-1;
 	while(row < m && col >= 0){
 		if(matrix[row][col] == x)
