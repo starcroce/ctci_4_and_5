@@ -6,7 +6,7 @@
 using namespace std;
 
 void qSort(stack<int> &s){
-	priority_queue<int, vector<int>, greater<int> > q;
+	priority_queue<int, vector<int>, less<int> > q;
 	while(!s.empty()){
 		q.push(s.top());
 		s.pop();
