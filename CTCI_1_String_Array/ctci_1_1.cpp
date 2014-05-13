@@ -1,24 +1,23 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
-bool isUnique(string s){
-	bool a[256];
-	for(int i=0; i<256; i++){
-		a[i] = false;
-	}
-	int len = s.length();
-	for(int i=0; i<len; i++){
-		int n = (int)s[i];
-		// if a[n] == true, it means that this char has been appeared
-		if(a[n])
+bool isUnique(string s)
+{
+	vector<bool> table(256, false);
+	for(int i = 0; i < s.size(); i++)
+	{
+		int pos = (int)s[i];
+		if(table[pos] == true)
 			return false;
-		a[n] = true;
+		table[pos] = true;
 	}
 	return true;
 }
 
-int main(){
+int main(int argc, char const *argv[])
+{
 	string s1 = "i have a dream";
 	string s2 = "qwertyuiop";
 	cout<<isUnique(s1)<<" "<<isUnique(s2)<<endl;

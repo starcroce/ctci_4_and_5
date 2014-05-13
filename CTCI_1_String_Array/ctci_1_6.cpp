@@ -1,41 +1,72 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-void swap(int &a, int &b){
-	a = a+b;
-	b = a-b;
-	a = a-b;
-}
-
-void rotate(int a[][4], int n){
-	// 1 5 9  13
-	// 2 6 10 14
-	// 3 7 11 15
-	// 4 8 12 16
-	for(int i=0; i<n; i++){
-		for(int j=i+1; j<n; j++){
-			swap(a[i][j], a[j][i]);
-		}
-	}
-	// reverse the rotated matrix
-	for(int i=0; i<n/2; i++){
-		for(int j=0; j<n; j++){
-			swap(a[i][j], a[n-i-1][j]);
+void rotateMatrix_clock(vector<vector<int> > &m)
+{
+	int len = m.size();
+	for(int i = 0; i < len / 2; i++)
+	{
+		int start = i, end = len - 1 - i;
+		for(int j = start; j < end; j++)
+		{
+			int offset = j - start;
+			int top = m[start][j];
+			m[start][j] = m[end-offset][start];
+			m[end-offset][start] = m[end][end-offset];
+			m[end][end-offset] = m[j][end];
+			m[j][end] = top;
 		}
 	}
 }
 
-int main(){
-	int a[4][4] = {
-		{1,2,3,4}, 
-		{5,6,7,8},
-		{9,10,11,12},
-		{13,14,15,16}
-	};
-	rotate(a, 4);
-	for(int i=0; i<4; i++){
-		for(int j=0; j<4; j++){
-			cout<<a[i][j]<<' ';
+void rotateMatrix_counterclock(vector<vector<int> > &m)
+{
+	int len = m.size();
+	for(int i = 0; i < len / 2; i++)
+	{
+		int start = i, end = len - 1 - i;
+		for(int j = start; j < end; j++)
+		{
+			int offset = j - start;
+			int top = m[start][j];
+			m[start][j] = m[j][end];
+			m[j][end] = m[end][end-offset];
+			m[end][end-offset] = m[end-offset][start];
+			m[end-offset][start] = top;
+		}
+	}
+}
+
+int main(int argc, char const *argv[])
+{
+	vector<vector<int> > table(4, vector<int> (4));
+	for(int i = 0; i < 4; i++)
+	{
+		for(int j = 0; j < 4; j++)
+		{
+			table[i][j] = i + j;
+			cout<<table[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+	rotateMatrix_clock(table);
+	cout<<endl;
+	for(int i = 0; i < 4; i++)
+	{
+		for(int j = 0; j < 4; j++)
+		{
+			cout<<table[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+	cout<<endl;
+	rotateMatrix_counterclock(table);
+	for(int i = 0; i < 4; i++)
+	{
+		for(int j = 0; j < 4; j++)
+		{
+			cout<<table[i][j]<<" ";
 		}
 		cout<<endl;
 	}

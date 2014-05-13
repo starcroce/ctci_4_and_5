@@ -1,90 +1,53 @@
-#include <iostream>
-#include <cstring>
-using namespace std;
+#include "MyLinkedList.h"
 
-typedef struct node{
-	int data;
-	node *next;
-}node;
-
-node *init(int a[], int n){
-	node *head, *p;
-	for(int i=0; i<n; i++){
-		node *n = new node();
-		n->data = a[i];
-		if(i == 0){
-			head = p = n;
-			continue;
-		}
-		p->next = n;
-		p = n;
-	}
-	return head;
-}
-
-void printList(node *head){
-	while(head){
-		cout<<head->data<<" ";
-		head = head->next;
-	}
-	cout<<endl;
-}
-
-node *addLists(node *p, node *q){
-	if(p == NULL)
-		return q;
-	if(q == NULL)
-		return p;
-	int carry = 0;
-	// ans is the head and pre is the tail
-	node *ans, *pre = NULL;
-	while(p && q){
-		int tmp = p->data+q->data+carry;
-		node *r = new node();
-		r->data = tmp%10;
-		if(pre){
-			pre->next = r;
-			pre = r;
+ListNode *partition(ListNode *head, int target)
+{
+	ListNode *beforeStart = NULL, *beforeEnd = NULL;
+	ListNode *afterStart = NULL, *afterEnd = NULL;
+	while(head != NULL)
+	{
+		if(head->data < target)
+		{
+			if(beforeStart == NULL)
+			{
+				beforeStart = head;
+				beforeEnd = head;
+			}
+			else
+			{
+				beforeEnd->next = head;
+				beforeEnd = beforeEnd->next;
+			}
+			head = head->next;
+			beforeEnd->next = NULL;
 		}
 		else
-			pre = ans = r;
-		carry = tmp/10;
-		p = p->next;
-		q = q->next;
+		{
+			if(afterStart == NULL)
+			{
+				afterStart = head;
+				afterEnd = head;
+			}
+			else
+			{
+				afterEnd->next = head;
+				afterEnd = afterEnd->next;
+			}
+			head = head->next;
+			afterEnd->next = NULL;
+		}
 	}
-	if(p){
-		int tmp = p->data+carry;
-		node *r = new node();
-		r->data = tmp%10;
-		pre->next = r;
-		pre = r;
-		carry = tmp/10;
-		p = p->next;
-	}
-	if(q){
-		int tmp = q->data+carry;
-		node *r = new node();
-		r->data = tmp%10;
-		pre->next = r;
-		pre = r;
-		carry = tmp/10;
-		q = q->next;
-	}
-	if(carry > 0){
-		node *r =  new node();
-		r->data = carry;
-		pre->next = r;
-	}
-	return ans;
+	if(beforeStart == NULL)
+		return afterStart;
+	beforeEnd->next = afterStart;
+	return beforeStart;
 }
 
-int main(){
-	int m = 4, n = 3;
-	int a[] = {1,2,9,3};
-	int b[] = {2,3,5};
-	node *p = init(a, m);
-	node *q = init(b, n);
-	node *ans = addLists(p, q);
-	printList(ans);
+int main(int argc, char const *argv[])
+{
+	int a[] = {5,2,4,1,3,7,6};
+	ListNode *head = init(a, 7);
+	ListNode *res = partition(head, 4);
+	printList(res);
 	return 0;
 }

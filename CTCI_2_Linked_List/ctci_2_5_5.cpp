@@ -1,43 +1,51 @@
-// same to leetcode "add two numbers"
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        if (!l1 && !l2)
-            return new ListNode(0);
-        ListNode *head = new ListNode(0), *phead = head;
-        int adv = 0;
-        while(l1 && l2) {
-            int value = l1->val + l2->val + adv;
-            adv = value / 10;
-            phead->next = new ListNode(value%10);
-            phead = phead->next;
-            l1 = l1->next;
-            l2 = l2->next;
-        }
-        ListNode *remain = l1? l1: l2;
-        while(remain) {
-            int value = remain->val + adv;
-            adv = value / 10;
-            phead->next = new ListNode(value%10);
-            phead = phead->next;
-            remain = remain->next;
-        }
-        if(adv>0) {
-            phead->next = new ListNode(adv%10);
-            phead = phead->next;
-            adv /= 10;
-        }
-        // remove the first node
-        return head->next;
-    }
-};
+#include "MyLinkedList.h"
+
+ListNode *addLists(ListNode *node1, ListNode *node2)
+{
+	if(node1 == NULL)
+		return node2;
+	if(node2 == NULL)
+		return node1;
+	int carry = 0;
+	ListNode *fakeHead = new ListNode(), *head = fakeHead;
+	while(node1 != NULL && node2 != NULL)
+	{
+		int val = node1->data + node2->data + carry;
+		carry = val / 10;
+		head->next = new ListNode();
+		head->next->data = val % 10;
+		head = head->next;
+		node1 = node1->next;
+		node2 = node2->next;
+	}
+	ListNode *remain = node1? node1: node2;
+	while(remain != NULL)
+	{
+		int val = remain->data + carry;
+		carry = val / 10;
+		head->next = new ListNode();
+		head->next->data = val % 10;
+		head = head->next;
+		remain = remain->next;
+	}
+	if(carry > 0)
+	{
+		head->next = new ListNode();
+		head->next->data = carry % 10;
+		head = head->next;
+		carry /= 10;
+	}
+	return fakeHead->next;
+}
+
+int main(int argc, char const *argv[])
+{
+	int m = 4, n = 3;
+	int a[] = {1,2,9,3};
+	int b[] = {2,3,5};
+	ListNode *p = init(a, m);
+	ListNode *q = init(b, n);
+	ListNode *ans = addLists(p, q);
+	printList(ans);
+	return 0;
+}

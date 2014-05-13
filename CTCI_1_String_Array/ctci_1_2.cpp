@@ -2,24 +2,23 @@
 #include <cstring>
 using namespace std;
 
-void swap(char &a, char &b){
-	char t = a;
-	a = b;
-	b = t;
-}
-
-// remeber Microsoft!!!
-void reverseString(char *s){
-	int len = strlen(s);
-	// the length of the loop is len/2
-	// the sum of the index is len-1
-	for(int i=0; i<len/2; i++){
-		swap(s[i], s[len-i-1]);
+void reverseString(char *s)
+{
+	int start = 0, end = strlen(s) - 1;
+	while(start < end)
+	{
+		char tmp = s[start];
+		s[start] = s[end];
+		s[end] = tmp;
+		start++; end--;
 	}
+
 }
 
-int main(){
+int main(int argc, char const *argv[])
+{
 	char s[] = "qwertyiop";
 	reverseString(s);
 	cout<<s<<endl;
 	return 0;
+}
