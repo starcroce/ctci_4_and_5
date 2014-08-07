@@ -30,15 +30,15 @@ node *loopStart(node *head){
 		return NULL;
 	node *fast = head;
 	node *slow = head;
-	// the condition is fast->next != NULL
-	while(fast->next != NULL){
+	// the condition is fast->next and fast != NULL
+	while(fast->next != NULL && fast != NULL){
 		fast = fast->next->next;
 		slow = slow->next;
 		if(fast == slow)
 			break;
 	}
 	// if no loop
-	if(fast->next == NULL)
+	if(fast->next == NULL || fast == NULL)
 		return NULL;
 	slow = head;
 	while(fast != slow){
@@ -51,7 +51,7 @@ node *loopStart(node *head){
 int main(){
 	int m = 9, n = 10;
 	int a[] = {3,2,1,3,5,6,2,6,3,1};
-	node *head =  init(a, n, m);
+	node *head = init(a, n, m);
 	node *p = loopStart(head);
 	cout<<p->data<<endl;
 	return 0;

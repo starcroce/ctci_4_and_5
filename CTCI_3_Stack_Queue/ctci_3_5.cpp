@@ -3,29 +3,32 @@
 using namespace std;
 
 template <typename T>
-class MyQueue{
+class MyQueue
+{
 public:
-	MyQueue();
-	~MyQueue();
-	void push(T data){
+	MyQueue() {};
+	~MyQueue() {};
+
+	void push(T data)
+	{
 		move(sOut, sIn);
 		sIn.push(data);
 	}
-	void pop(){
+
+	void pop()
+	{
 		move(sIn, sOut);
 		sOut.pop();
 	}
-	void move(stack<T> &src, stack<T> &dst){
-		while(!src.empty()){
-			dst.push(src.top());
-			src.pop();
-		}
-	}
-	T front(){
+
+	T front()
+	{
 		move(sIn, sOut);
 		return sOut.top();
 	}
-	T rear(){
+
+	T rear()
+	{
 		move(sOut, sIn);
 		return sIn.top();
 	}
@@ -33,11 +36,22 @@ private:
 	// sOut is for pop and front
 	// sIn is for push and rear
 	stack<T> sIn, sOut;
+	
+	void move(stack<T> &src, stack<T> &dst)
+	{
+		while(!src.empty())
+		{
+			dst.push(src.top());
+			src.pop();
+		}
+	}
 };
 
-int main(){
+int main(int argc, char const *argv[])
+{
 	MyQueue<int> q;
-	for(int i=0; i<10; i++){
+	for(int i = 0; i < 10; i++)
+	{
 		q.push(i);
 	}
 	cout<<q.front()<<" "<<q.rear()<<endl;

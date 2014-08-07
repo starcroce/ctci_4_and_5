@@ -17,8 +17,10 @@ void reverseString(char *s)
 
 int main(int argc, char const *argv[])
 {
-	char s[] = "qwertyiop";
-	reverseString(s);
-	cout<<s<<endl;
+	char s1[] = "qwerty";
+	char s2[] = "qwer";
+	reverseString(s1);
+	reverseString(s2);
+	cout<<s1<<" "<<s2<<endl;
 	return 0;
 }

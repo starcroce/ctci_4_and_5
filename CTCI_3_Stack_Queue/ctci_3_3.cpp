@@ -3,84 +3,110 @@ using namespace std;
 
 const int STACK_SIZE = 100;
 
-class stack{
+class stack
+{
 public:
-	stack(int size = STACK_SIZE){
+	stack(int size = STACK_SIZE)
+	{
 		buff = new int[size];
 		index = -1;
-		size = size;
+		this->size = size;
 	}
-	~stack(){
+	~stack()
+	{
 		delete[] buff;
 	}
-	void push(int data){
+	void push(int data)
+	{
 		index++;
 		buff[index] = data;
 	}
-	void pop(){
+	void pop()
+	{
 		index--;
 	}
-	int top(){
+	int top()
+	{
 		return buff[index];
 	}
-	bool isFull(){
+	bool isFull()
+	{
 		return index == size-1;
 	}
-	bool isEmpty(){
+	bool isEmpty()
+	{
 		return index == -1;
 	}
+
 private:
 	int *buff;
 	int index;
 	int size;
 };
 
-class setOfStacks{
+class setOfStacks
+{
 public:
-	setOfStacks(int size = STACK_SIZE){
+	setOfStacks(int size = STACK_SIZE)
+	{
 		st = new stack[size];
 		index = 0;
-		size = size;
+		this->size = size;
 	}
-	~setOfStacks(){
+	~setOfStacks()
+	{
 		delete[] st;
 	}
-	void push(int data){
+	void push(int data)
+	{
+		// current stack is full, push to the next stack
 		if(st[index].isFull())
 			index++;
 		st[index].push(data);
 	}
-	void pop(){
-		while(st[index].isEmpty()){
+	void pop()
+	{
+		// current stack is empty, move to previous stack
+		while(st[index].isEmpty())
+		{
 			index--;
 		}
 		st[index].pop();
 	}
-	void popAt(int index){
-		while(st[index].isEmpty()){
-			index--;
+	void popAt(int num)
+	{
+		while(st[num].isEmpty())
+		{
+			num--;
 		}
-		st[index].pop();
+		st[num].pop();
 	}
-	int top(){
-		while(st[index].isEmpty()){
+	int top()
+	{
+		while(st[index].isEmpty())
+		{
 			index--;
 		}
 		return st[index].top();
 	}
+
 private:
 	stack *st;
 	int index;
 	int size;
 };
 
-int main(){
+int main(int argc, char const *argv[])
+{
 	setOfStacks ss;
-	for(int i=0; i<3*STACK_SIZE+1; i++){
+	for(int i = 0; i < 3*STACK_SIZE+1; i++)
+	{
 		ss.push(i);
 	}
-	for(int i=0; i<STACK_SIZE; i++){
-		ss.popAt(0);
+	cout<<ss.top()<<endl;
+	for(int i = 0; i < STACK_SIZE; i++)
+	{
+		// ss.popAt(0);
 		ss.popAt(2);
 	}
 	cout<<ss.top()<<endl;

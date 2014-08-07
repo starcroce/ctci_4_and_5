@@ -1,25 +1,32 @@
 #include <iostream>
+#include <climits>
 using namespace std;
 
-const int INIT = ~(1<<31);
+const int INIT = INT_MAX;
 
 // use a struct to store the min value
 // can easily add max value
-typedef struct node{
-	int data, min;
-}node;
+typedef struct node
+{
+	int data;
+	int min;
+} node;
 
-class stackWithMin{
+class stackWithMin
+{
 public:
-	stackWithMin(int size = 100){
+	stackWithMin(int size = 100)
+	{
 		buff = new node[size];
 		buff[0].min = INIT;
 		index = 0;
 	}
-	~stackWithMin(){
+	~stackWithMin()
+	{
 		delete[] buff;
 	}
-	void push(int data){
+	void push(int data)
+	{
 		index++;
 		buff[index].data = data;
 		// update the min value when push
@@ -28,24 +35,32 @@ public:
 		else
 			buff[index].min = buff[index-1].min;
 	}
-	void pop(){
+	void pop()
+	{
 		index--;
 	}
-	int top(){
+	int top()
+	{
 		return buff[index].data;
 	}
-	int min(){
+	int min()
+	{
 		return buff[index].min;
 	}
+
 private:
 	node *buff;
 	int index;
 };
 
-int main(){
+int main(int argc, char const *argv[])
+{
 	stackWithMin myStack;
-	for(int i=0; i<20; i++){
+	for(int i = 20; i > 0; i--){
 		myStack.push(i);
 	}
-	cout<<myStack.min()<<endl;
+	cout<<myStack.min()<<" "<<myStack.top()<<endl;
+	myStack.pop();
+	cout<<myStack.min()<<" "<<myStack.top()<<endl;
+	return 0;
 }

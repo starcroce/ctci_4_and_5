@@ -2,7 +2,7 @@
 #include <stack>
 using namespace std;
 
-// palte from begin to end on src, need to move to end, can use bridge
+// plate from begin to end on src, need to move to end, can use bridge
 struct op {
 	int begin, end;
 	char src, bri, dst;
@@ -21,8 +21,7 @@ void hanoi(int n, char src, char bri, char dst) {
 			s.push(op(tmp.begin, tmp.end-1, tmp.bri, tmp.src, tmp.dst));
 			s.push(op(tmp.end, tmp.end, tmp.src, tmp.bri, tmp.dst));
 			s.push(op(tmp.begin, tmp.end-1, tmp.src, tmp.dst, tmp.bri));
-		}
-		else {
+		} else {
             cout<<"Move disk "<<tmp.begin<<" from "<<tmp.src<<" to "<<tmp.dst<<endl;
         }
 	}

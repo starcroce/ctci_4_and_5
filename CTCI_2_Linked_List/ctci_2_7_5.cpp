@@ -30,9 +30,11 @@ int main(int argc, char const *argv[])
 	int a[] = {1,2,2,1};
 	int b[] = {1,2,3,2,1};
 	int c[] = {1,2,3};
-	ListNode *head1 =  init(a, 4);
-	ListNode *head2 =  init(b, 5);
-	ListNode *head3 =  init(c, 3);
-	cout<<isPalindrome(head1)<<" "<<isPalindrome(head2)<<" "<<isPalindrome(head3)<<" "<<endl;
+	ListNode *head1 = init(a, 4);
+	ListNode *head2 = init(b, 5);
+	ListNode *head3 = init(c, 3);
+	cout<<isPalindrome(head1)<<" ";
+	cout<<isPalindrome(head2)<<" ";
+	cout<<isPalindrome(head3)<<" "<<endl;
 	return 0;
 }

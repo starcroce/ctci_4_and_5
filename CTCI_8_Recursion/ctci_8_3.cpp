@@ -39,7 +39,7 @@ int main(){
 	return 0;
 }
 
-// more elegane DFS solution
+// more elegant DFS solution
 // same as leetcode subsets
 vector<vector<int> > subsets(vector<int> &S) {
     vector<vector<int> > res;
